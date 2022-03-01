@@ -6,13 +6,101 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <Button
+        android:id="@+id/Goal_Increase"
+        android:layout_width="43dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="28dp"
+        android:text="@string/plus"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.983"
+        app:layout_constraintStart_toEndOf="@+id/Goal_Decrease"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.734" />
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="194dp"
+        android:layout_height="118dp"
+        android:text="@string/_2048"
+        android:textAlignment="center"
+        android:textSize="78sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09" />
+
+    <Button
+        android:id="@+id/Game_Start"
+        android:layout_width="203dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/play"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_Points"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/Game_Instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="@string/instructions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_points"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/txt_Points"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:text="@string/point_goal"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title"
+        app:layout_constraintVertical_bias="0.432" />
+
+    <EditText
+        android:id="@+id/input_points"
+        android:layout_width="172dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/title"
+        android:textAlignment="center"
+        android:textColor="#686767"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Goal_Increase"
+        app:layout_constraintStart_toEndOf="@+id/Goal_Decrease"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Points"
+        app:layout_constraintVertical_bias="0.074"
+        android:autofillHints="2048" />
+
+    <Button
+        android:id="@+id/Goal_Decrease"
+        android:layout_width="43dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/decrease"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.732" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

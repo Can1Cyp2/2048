@@ -8,7 +8,7 @@ public class Gameplay {
     public static int[][] grid = new int[GRIDSIZE][GRIDSIZE];  // Creating base grid
 
 
-    public void makeGrid(int gridSize){
+    public static void makeGrid(int gridSize){
         // Creates a grid for the game
         // gridSize is standard 4
 
@@ -28,14 +28,14 @@ public class Gameplay {
              *  [0, 0, 0, 0]], */
     }
 
-    public boolean isSpotEmpty(int x, int y){
+    public static boolean isSpotEmpty(int x, int y){
         // If spot in grid is equal to 0 it is empty, function returns true
         return grid[x][y] == 0; // If the spot has a number > 0, return false
     }
 
 
     // Returns number of available spots left
-    public int availableSpots() {
+    public static int availableSpots() {
         int availableCount = 0; // Number of empty spaces
 
         // Checks if spaces on grid are empty
@@ -49,18 +49,22 @@ public class Gameplay {
         return availableCount;
     }
 
+
     // Checks if there are any empty spots and possible spots for the player to move
-    public boolean endGame(){
+    public static boolean endGame(){
         // TODO Finish end game function by seeing if there are possible moves for player
 
-        //if (availableSpots() > 0)
+        boolean end_game = false;
 
-        return false;
+        //if (availableSpots() == 0 && !availableMoves){
+            //end_game = true;
+
+        return end_game;
     }
 
 
     // Fills a random spot on the board with a 2 or 4
-    public void fillRandomSpot(){
+    public static void fillRandomSpot(){
         Random rand = new Random();
         int x, y;
 
@@ -71,14 +75,32 @@ public class Gameplay {
             y = rand.nextInt(GRIDSIZE);
 
         } while(isSpotEmpty(x, y));
+
+        // Getting number to fill the empty grid spot
+        int num = rand.nextInt(10);
+
+        // Less of a chance to place a 4
+        int fill_num = 0;
+        if (num < 8) fill_num = 2;
+        else fill_num = 4;
+
+        grid[x][y] = fill_num;
     }
+
+    /* TODO Check if the player can make any more moves
+    public boolean availableMoves(){
+
+    }
+
+     */
+
 
     /* ****************************** MOVEMENT OF GRID PIECES: ******************************* */
 
     // moves grid pieces to the right
     public void moveRight(){
     // moving down the double array, to move right
-      for (int x = 2; x >= 0; x--){
+      for (int x = 4; x >= 0; x--){
             for (int y = 0; y < 4; y++){
 
                 // If the space is not empty break out of the loop, do not move the number
