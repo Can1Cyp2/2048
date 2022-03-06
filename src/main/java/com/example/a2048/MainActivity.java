@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +39,18 @@ public class MainActivity extends AppCompatActivity {
 
         } */
 
+
+    }
+
+    public void pointsUp(View v){
+
+        EditText pointView = (EditText) findViewById(R.id.input_points);
+        String pV = pointView.getText().toString();
+
+        int points = Integer.parseInt(pV);
+        points *= 2;
+
+        ((TextView) findViewById(R.id.input_points)).setText(points);
 
     }
 

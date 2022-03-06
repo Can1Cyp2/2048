@@ -124,6 +124,7 @@
             android:id="@+id/grid0_0"
             android:layout_width="89dp"
             android:layout_height="62dp"
+            android:textAlignment="center"
             app:layout_column="0"
             app:layout_row="0" />
     </androidx.gridlayout.widget.GridLayout>
