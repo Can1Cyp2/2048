@@ -1,8 +1,35 @@
 package com.example.a2048;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Random;
 
-public class Gameplay {
+public class Gameplay extends AppCompatActivity {
+
+    // Sets the screen up
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.game_screen);
+
+        configurePlayButton();
+    }
+
+    public void configurePlayButton(){
+        Button backButton = (Button) findViewById(R.id.Main_Screen);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+
+            }
+        });
+    }
 
     public static final int GRIDSIZE = 4; // Size of default grid
     public static int[][] grid = new int[GRIDSIZE][GRIDSIZE];  // Creating base grid

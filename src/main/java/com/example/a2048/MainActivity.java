@@ -2,9 +2,11 @@ package com.example.a2048;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,6 +17,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        configurePlayButton();
+
+    }
+
+    public void configurePlayButton(){
+        Button nextButton = (Button) findViewById(R.id.Game_Start);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Gameplay.class));
+
+            }
+        });
     }
 
     // TODO: RUNS THE GAME
@@ -40,12 +56,13 @@ public class MainActivity extends AppCompatActivity {
             for (int y = 0; y < 4; y++) {
                 String grid_num = "grid" + x + "_" + y;
 
+                // Turning the space of the grid to an ID so it can be displayed
                 int boxID = getResources().getIdentifier(grid_num, "id",getPackageName());
                 ((TextView) findViewById(boxID)).setText(Gameplay.grid[x][y]);
             }
         }
 
-     }
+    }
 
 
 
@@ -53,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     public void startGame() {
         // Starts the game and switches the screen when "PLAY" is clicked
         run();
+        display_grid();
         setContentView(R.layout.game_screen);
     } */
 
