@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // TODO Display numbers to the grid by changing the text boxes in the grid in game_screen.xml
+    // TODO Display numbers to the  grid by changing the text boxes in the grid in game_screen.xml
     public void display_grid(){
         for (int x = 0; x < 4; x++) {
             for (int y = 0; y < 4; y++) {
