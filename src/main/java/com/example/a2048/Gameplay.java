@@ -31,11 +31,12 @@ public class Gameplay extends AppCompatActivity {
         });
     }
 
+
     public static final int GRIDSIZE = 4; // Size of default grid
     public static int[][] grid = new int[GRIDSIZE][GRIDSIZE];  // Creating base grid
 
 
-    public static void makeGrid(int gridSize){
+    public static void makeGrid(int gridSize) {
         // Creates a grid for the game
         // gridSize is standard 4
 
@@ -49,13 +50,13 @@ public class Gameplay extends AppCompatActivity {
         }
 
         /* Visualization for a default grid of 4:
-             *  [[0, 0, 0, 0],
-             *  [0, 0, 0, 0],
-             *  [0, 0, 0, 0],
-             *  [0, 0, 0, 0]], */
+         *  [[0, 0, 0, 0],
+         *  [0, 0, 0, 0],
+         *  [0, 0, 0, 0],
+         *  [0, 0, 0, 0]], */
     }
 
-    public static boolean isSpotEmpty(int x, int y){
+    public static boolean isSpotEmpty(int x, int y) {
         // If spot in grid is equal to 0 it is empty, function returns true
         return grid[x][y] == 0; // If the spot has a number > 0, return false
     }
@@ -78,20 +79,20 @@ public class Gameplay extends AppCompatActivity {
 
 
     // Checks if there are any empty spots and possible spots for the player to move
-    public static boolean endGame(){
+    public static boolean endGame() {
         // TODO Finish end game function by seeing if there are possible moves for player
 
         boolean end_game = false;
 
         //if (availableSpots() == 0 && !availableMoves){
-            //end_game = true;
+        //end_game = true;
 
         return end_game;
     }
 
 
     // Fills a random spot on the board with a 2 or 4
-    public static void fillRandomSpot(){
+    public static void fillRandomSpot() {
         Random rand = new Random();
         int x, y;
 
@@ -101,7 +102,7 @@ public class Gameplay extends AppCompatActivity {
             x = rand.nextInt(GRIDSIZE);
             y = rand.nextInt(GRIDSIZE);
 
-        } while(isSpotEmpty(x, y));
+        } while (isSpotEmpty(x, y));
 
         // Getting number to fill the empty grid spot
         int num = rand.nextInt(10);
@@ -115,120 +116,120 @@ public class Gameplay extends AppCompatActivity {
     }
 
     /* TODO Check if the player can make any more moves
-    public boolean availableMoves(){
+    public boolean availableMoves() {
 
-    }
-
-     */
+    } */
 
 
-    /* ****************************** MOVEMENT OF GRID PIECES: ******************************* */
 
-    // moves grid pieces to the right
-    public void moveRight(){
-    // moving down the double array, to move right
-      for (int x = 4; x >= 0; x--){
-            for (int y = 0; y < 4; y++){
 
-                // If the space is not empty break out of the loop, do not move the number
-                if (grid[x][y] != 0) break;
+        /* ****************************** MOVEMENT OF GRID PIECES: ******************************* */
 
-                // Moving the numbers
-                int z = x; // Checking for z in place of x:
-                while (z < 3 && grid[z + 1][y] == 0){
-                    grid[z + 1][y] = grid[z][y];
-                    grid[z][y] = 0;
-                    z++;
-                }
-                if (z < 3){
-                    if (grid[z + 1][y] == grid[z][y]){
-                        grid[z + 1][y] *= 2;
+        // moves grid pieces to the right
+        public void moveRight() {
+            // moving down the double array, to move right
+            for (int x = 4; x >= 0; x--) {
+                for (int y = 0; y < 4; y++) {
+
+                    // If the space is not empty break out of the loop, do not move the number
+                    if (grid[x][y] != 0) break;
+
+                    // Moving the numbers
+                    int z = x; // Checking for z in place of x:
+                    while (z < 3 && grid[z + 1][y] == 0) {
+                        grid[z + 1][y] = grid[z][y];
                         grid[z][y] = 0;
+                        z++;
+                    }
+                    if (z < 3) {
+                        if (grid[z + 1][y] == grid[z][y]) {
+                            grid[z + 1][y] *= 2;
+                            grid[z][y] = 0;
+                        }
                     }
                 }
             }
         }
-    }
 
-    // moves grid pieces to the left
-    public void moveLeft(){
-        // moving up the double array, to move left
-        for (int x = 0; x < 4; x++){
-            for (int y = 0; y < 4; y++){
+        // moves grid pieces to the left
+        public void moveLeft () {
+            // moving up the double array, to move left
+            for (int x = 0; x < 4; x++) {
+                for (int y = 0; y < 4; y++) {
 
-                // If the space is not empty break out of the loop, do not move the number
-                if (grid[x][y] != 0) break;
+                    // If the space is not empty break out of the loop, do not move the number
+                    if (grid[x][y] != 0) break;
 
-                // Moving the numbers left
-                int z = x; // Checking for z in place of x:
-                while (z > 0 && grid[z - 1][y] == 0){
-                    grid[z - 1][y] = grid[z][y];
-                    grid[z][y] = 0;
-                    z--;
-                }
-
-                if (z > 0){
-                    if (grid[z - 1][y] == grid[z][y]){
-                        grid[z - 1][y] *= 2;
+                    // Moving the numbers left
+                    int z = x; // Checking for z in place of x:
+                    while (z > 0 && grid[z - 1][y] == 0) {
+                        grid[z - 1][y] = grid[z][y];
                         grid[z][y] = 0;
+                        z--;
+                    }
+
+                    if (z > 0) {
+                        if (grid[z - 1][y] == grid[z][y]) {
+                            grid[z - 1][y] *= 2;
+                            grid[z][y] = 0;
+                        }
                     }
                 }
             }
         }
-    }
 
-    // Moves the grid pieces up
-    public void moveUp() {
-        // Moving grid pieces up the double array by moving left in the array
-        for (int x = 0; x < 4; x++){
-            for (int y = 0; y < 4; y++){
+        // Moves the grid pieces up
+        public void moveUp () {
+            // Moving grid pieces up the double array by moving left in the array
+            for (int x = 0; x < 4; x++) {
+                for (int y = 0; y < 4; y++) {
 
-                // If the space is not empty break out of the loop, do not move the number
-                if (grid[x][y] != 0) break;
-                
-                int j = y;
-                while (j > 0 && grid[x][j - 1] == 0) {
-                    grid[x][j - 1] = grid[x][j];
-                    grid[x][j] = 0;
-                    j--;
-                }
+                    // If the space is not empty break out of the loop, do not move the number
+                    if (grid[x][y] != 0) break;
 
-                if (j > 0) {
-                    if (grid[x][j - 1] == grid[x][j]) {
-                        grid[x][j - 1] *= 2;
+                    int j = y;
+                    while (j > 0 && grid[x][j - 1] == 0) {
+                        grid[x][j - 1] = grid[x][j];
                         grid[x][j] = 0;
+                        j--;
+                    }
+
+                    if (j > 0) {
+                        if (grid[x][j - 1] == grid[x][j]) {
+                            grid[x][j - 1] *= 2;
+                            grid[x][j] = 0;
+                        }
                     }
                 }
             }
         }
-    }
 
-    // Moves the grid pieces down
-    public void moveDown() {
-        // Moving grid pieces down by moving right in the double array
-        for (int x = 0; x < 4; x++){
-            for (int y = 0; y < 4; y++){
+        // Moves the grid pieces down
+        public void moveDown () {
+            // Moving grid pieces down by moving right in the double array
+            for (int x = 0; x < 4; x++) {
+                for (int y = 0; y < 4; y++) {
 
-                // If the space is not empty break out of the loop, do not move the number
-                if (grid[x][y] != 0) break;
+                    // If the space is not empty break out of the loop, do not move the number
+                    if (grid[x][y] != 0) break;
 
-                int j = y;
-                while (j < 3 && grid[x][j + 1] == 0) {
-                    grid[x][j + 1] = grid[x][j];
-                    grid[x][j] = 0;
-                    j++;
-                }
-
-                if (j < 3) {
-                    if (grid[x][j + 1] == grid[x][j]) {
-                        grid[x][j + 1] *= 2;
+                    int j = y;
+                    while (j < 3 && grid[x][j + 1] == 0) {
+                        grid[x][j + 1] = grid[x][j];
                         grid[x][j] = 0;
+                        j++;
+                    }
+
+                    if (j < 3) {
+                        if (grid[x][j + 1] == grid[x][j]) {
+                            grid[x][j + 1] *= 2;
+                            grid[x][j] = 0;
+                        }
                     }
                 }
             }
         }
+
+        /* *************************** ^^ MOVEMENT OF GRID PIECES ^^ ******************************* */
+
     }
-
-    /* *************************** ^^ MOVEMENT OF GRID PIECES ^^ ******************************* */
-
-}

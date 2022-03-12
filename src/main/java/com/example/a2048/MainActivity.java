@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         configurePlayButton();
-
+        configureInstructionsButton();
     }
 
     public void configurePlayButton(){
@@ -29,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, Gameplay.class));
 
+            }
+        });
+    }
+
+    public void configureInstructionsButton() {
+        Button instructions = (Button) findViewById(R.id.Game_Instructions);
+        instructions.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Popup.class));
             }
         });
     }
