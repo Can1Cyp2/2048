@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         configurePlayButton();
         configureInstructionsButton();
+        configureHiScoresButton();
     }
 
     public void configurePlayButton(){
@@ -44,8 +45,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void configureHiScoresButton() {
+        Button hiscores = (Button) findViewById(R.id.high_scores);
+        hiscores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Scores.class));
+            }
+        });
+    }
+
     // TODO: RUNS THE GAME
-    public void run() {
+    public void run(View view) {                             // Changed "startGame" to "run" and run() to run(View view)
         // Makes the grid to start the game
         Gameplay.makeGrid(Gameplay.GRIDSIZE);
 

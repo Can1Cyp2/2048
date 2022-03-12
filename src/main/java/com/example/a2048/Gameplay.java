@@ -128,7 +128,7 @@ public class Gameplay extends AppCompatActivity {
         // moves grid pieces to the right
         public void moveRight() {
             // moving down the double array, to move right
-            for (int x = 4; x >= 0; x--) {
+            for (int x = 4; x >= 0; x--) {                      // maybe x = 3?
                 for (int y = 0; y < 4; y++) {
 
                     // If the space is not empty break out of the loop, do not move the number
@@ -141,7 +141,7 @@ public class Gameplay extends AppCompatActivity {
                         grid[z][y] = 0;
                         z++;
                     }
-                    if (z < 3) {
+                    if (z < 3) {                                    // x < 3?? Otherwise this will never run because z needs to be >= 3 to break out of the above while loop
                         if (grid[z + 1][y] == grid[z][y]) {
                             grid[z + 1][y] *= 2;
                             grid[z][y] = 0;

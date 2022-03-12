@@ -7,6 +7,19 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/high_scores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="High Scores"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toEndOf="@+id/Game_Instructions"
+        app:layout_constraintTop_toBottomOf="@+id/input_points"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
         android:id="@+id/Goal_Increase"
         android:layout_width="43dp"
         android:layout_height="48dp"
@@ -39,7 +52,7 @@
         android:layout_width="203dp"
         android:layout_height="70dp"
         android:layout_marginTop="48dp"
-        android:onClick="startGame"
+        android:onClick="run"
         android:text="@string/play"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/txt_Points"
