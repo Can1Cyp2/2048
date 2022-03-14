@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     public void run(View view) {            // Changed "startGame" to "run" and run() to run(View view)
         // Makes the grid to start the game
         System.out.println("GAME STARTED");
-        System.out.println();
+        System.out.println(String.valueOf(""));
         Gameplay.makeGrid(Gameplay.GRIDSIZE);
         display_grid();
 
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Displays the numbers to the grid
     public void display_grid(){
-        TextView pointView = (TextView) findViewById(R.id.textView2);
+        TextView pointView = ((TextView) findViewById(R.id.textView2));
         String pV = pointView.getText().toString();
         for (int x = 0; x < 4; x++) {
             for (int y = 0; y < 4; y++) {
