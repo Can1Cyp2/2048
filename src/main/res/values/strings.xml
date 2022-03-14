@@ -7,4 +7,6 @@
     <string name="point_goal">Point Goal:</string>
     <string name="title">2048</string>
     <string name="decrease">-</string>
+    <string name="leave">LEAVE</string>
+    <string name="aaaaaaaa">AAAAAAAA</string>
 </resources>

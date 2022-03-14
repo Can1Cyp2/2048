@@ -61,7 +61,7 @@
         <TextView
             android:id="@+id/grid2_0"
             android:layout_width="84dp"
-            android:layout_height="62dp"
+            android:layout_height="61dp"
             app:layout_column="2"
             app:layout_row="0" />
 
@@ -134,11 +134,26 @@
         android:id="@+id/Main_Screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LEAVE"
+        android:layout_marginBottom="96dp"
+        android:text="@string/leave"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.378" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="222dp"
+        android:layout_height="92dp"
+        android:text="a"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.414" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
