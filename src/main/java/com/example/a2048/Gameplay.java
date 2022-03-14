@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,6 +43,8 @@ public class Gameplay extends AppCompatActivity {
 
         final int EMPTY = 0; // Empty value for grid
 
+
+
         // Initializing grid values
         for (int x = 0; x < gridSize; x++) {
             for (int y = 0; y < gridSize; y++) {
@@ -55,6 +58,22 @@ public class Gameplay extends AppCompatActivity {
          *  [0, 0, 0, 0],
          *  [0, 0, 0, 0]], */
     }
+
+
+    public void display_grid(){
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                String grid_num = "grid" + x + "_" + y;             // String it can't find?
+
+                // Turning the space of the grid to an ID so it can be displayed
+                int boxID = getResources().getIdentifier(grid_num, "id",getPackageName());
+                ((TextView) findViewById(boxID)).setText(Gameplay.grid[x][y]);
+            }
+        }
+
+    }
+
+
 
     public static boolean isSpotEmpty(int x, int y) {
         // If spot in grid is equal to 0 it is empty, function returns true
