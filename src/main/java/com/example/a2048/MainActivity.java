@@ -17,7 +17,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     private Activity view;
-    private Gameplay gameplay = new Gameplay();
+    private final Gameplay gameplay = new Gameplay();
 
     //TextView text;
 
@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //text = (TextView) findViewById(R.id.textView2);
                 startActivity(new Intent(MainActivity.this, Gameplay.class));
                 run(view);
 
@@ -68,48 +67,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean game_lost = false;   // if the player lost or not
 
 
-    // TODO: RUNS THE GAME
-    public void run(View view) {            // Changed "startGame" to "run" and run() to run(View view)
+    // RUNS THE GAME
+    public void run(View view) {
         // Makes the grid to start the game
         System.out.println("GAME STARTED");
-        // System.out.println(findViewById(R.id.text));
+
         System.out.println(Arrays.deepToString(Gameplay.grid));
         Gameplay.makeGrid(Gameplay.GRIDSIZE);
-        gameplay.run_display_grid();
 
-        // if the player lost:
-        while (!game_lost) {
-            Gameplay.fillRandomSpot();
-
-            // If there are no available spots left and no moves can be made player loses
-            if (Gameplay.endGame()) {
-                game_lost = true;
-            }
-
-        }
     }
 
 
-
-
-
-//        // Trying to change images
-//        //"@drawable/drawtile"
-//        ImageView ChangeImage;
-//        ChangeImage = (ImageView)findViewById(R.id.imageView3);
-//        ChangeImage.setImageResource(R.drawable.ic_launcher_background);
-
-
-
-
-
-    /* TODO Starts the game: Initializes the grid by calling run, then switches to game screen
-    public void startGame() {
-        // Starts the game and switches the screen when "PLAY" is clicked
-        Gameplay.makeGrid(Gameplay.GRIDSIZE);
-        display_grid();
-
-    } */
 
     public void pointsUp(View v){
 
@@ -124,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
         if (points <= 16384) {
             ((TextView) findViewById(R.id.input_points)).setText(goal);
         }
-
     }
+
 
     public void pointsDown(View v){
 
@@ -140,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
         if (points >= 64) {
             ((TextView) findViewById(R.id.input_points)).setText(goal);
         }
-
     }
+
 
 }
 

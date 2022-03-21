@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Gameplay extends AppCompatActivity {
@@ -19,7 +20,6 @@ public class Gameplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen);
-
 
         configureLeaveButton();
         configureMoveUp();
@@ -40,7 +40,7 @@ public class Gameplay extends AppCompatActivity {
     }
 
     public void configureMoveUp(){
-        Button backButton = (Button) findViewById(R.id.Main_Screen);
+        Button backButton = (Button) findViewById(R.id.move_up);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +51,7 @@ public class Gameplay extends AppCompatActivity {
     }
 
     public void configureMoveDown(){
-        Button backButton = (Button) findViewById(R.id.move_up);
+        Button backButton = (Button) findViewById(R.id.move_down);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,6 +84,7 @@ public class Gameplay extends AppCompatActivity {
     }
 
 
+
     public static final int GRIDSIZE = 4; // Size of default grid
     public static int[][] grid = new int[GRIDSIZE][GRIDSIZE];  // Creating base grid
 
@@ -108,15 +109,22 @@ public class Gameplay extends AppCompatActivity {
          *  [0, 0, 0, 0]], */
     }
 
+    /* TODO: make point_goal text box display the users chosen point goal
+    public String goal = "Goal: 2048"; // The point goal chosen by the player
+    public void setGoal(){
+        ((TextView) findViewById(R.id.input_points)).setText(goal);
+    }
+    */
+
     public void run_display_grid(){
-        System.out.println(String.valueOf(Gameplay.grid));
         display_grid(view);
     }
 
 
     // Displays the numbers to the grid
     public void display_grid(Activity view) {
-        TextView pointView = ((TextView) findViewById(R.id.textView2));
+
+        System.out.println(Arrays.deepToString(grid));
         for (int x = 0; x < 4; x++) {
             for (int y = 0; y < 4; y++) {
                 String grid_num = "grid" + x + "_" + y;
@@ -126,8 +134,7 @@ public class Gameplay extends AppCompatActivity {
                 int boxID = getResources().getIdentifier(grid_num, "id", getPackageName());
                 ((TextView) findViewById(boxID)).setText(String.valueOf(Gameplay.grid[x][y]));
 
-                //((TextView) findViewById(R.id.grid0_0)).setText(String.valueOf(Gameplay.grid[x][y]));
-                //System.out.println("clear");
+
             }
         }
     }
@@ -178,7 +185,7 @@ public class Gameplay extends AppCompatActivity {
             x = rand.nextInt(GRIDSIZE);
             y = rand.nextInt(GRIDSIZE);
 
-        } while (isSpotEmpty(x, y));
+        } while (!isSpotEmpty(x, y));
 
         // Getting number to fill the empty grid spot
         int num = rand.nextInt(10);
@@ -206,6 +213,7 @@ public class Gameplay extends AppCompatActivity {
 
 
 
+        // TODO: fix movement to make sure it is working
         /* ****************************** MOVEMENT OF GRID PIECES: ******************************* */
 
         // moves grid pieces to the right
@@ -232,6 +240,7 @@ public class Gameplay extends AppCompatActivity {
                     }
                 }
             }
+            fillRandomSpot();
             run_display_grid();
         }
 
@@ -260,6 +269,7 @@ public class Gameplay extends AppCompatActivity {
                     }
                 }
             }
+            fillRandomSpot();
             run_display_grid();
         }
 
@@ -287,6 +297,7 @@ public class Gameplay extends AppCompatActivity {
                     }
                 }
             }
+            fillRandomSpot();
             run_display_grid();
         }
 
@@ -314,6 +325,7 @@ public class Gameplay extends AppCompatActivity {
                     }
                 }
             }
+            fillRandomSpot();
             run_display_grid();
         }
 
