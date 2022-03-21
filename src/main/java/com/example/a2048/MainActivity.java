@@ -12,8 +12,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ImageView;
 
+import java.util.Arrays;
+
 
 public class MainActivity extends AppCompatActivity {
+    private Activity view;
+    private Gameplay gameplay = new Gameplay();
+
+    //TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //text = (TextView) findViewById(R.id.textView2);
                 startActivity(new Intent(MainActivity.this, Gameplay.class));
                 run(view);
 
@@ -58,42 +65,33 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public boolean game_lost = false;   // if the player lost or not
+
 
     // TODO: RUNS THE GAME
     public void run(View view) {            // Changed "startGame" to "run" and run() to run(View view)
         // Makes the grid to start the game
         System.out.println("GAME STARTED");
-        System.out.println(String.valueOf(""));
+        // System.out.println(findViewById(R.id.text));
+        System.out.println(Arrays.deepToString(Gameplay.grid));
         Gameplay.makeGrid(Gameplay.GRIDSIZE);
-        display_grid();
+        gameplay.run_display_grid();
 
-        boolean loss = false; // if the player lost
-        while (!loss) {
+        // if the player lost:
+        while (!game_lost) {
             Gameplay.fillRandomSpot();
 
             // If there are no available spots left and no moves can be made player loses
             if (Gameplay.endGame()) {
-                loss = true;
+                game_lost = true;
             }
 
         }
     }
 
 
-    // Displays the numbers to the grid
-    public void display_grid(){
-        TextView pointView = ((TextView) findViewById(R.id.textView2));
-        String pV = pointView.getText().toString();
-        for (int x = 0; x < 4; x++) {
-            for (int y = 0; y < 4; y++) {
-                String grid_num = "grid" + x + "_" + y;
-                System.out.println(String.valueOf(Gameplay.grid[x][y]));
 
-                // Turning the space of the grid to an ID so it can be displayed
-                int boxID = getResources().getIdentifier(grid_num, "id",getPackageName());
-                ((TextView) findViewById(R.id.textView2)).setText(String.valueOf(Gameplay.grid[x][y]));
-            }
-        }
+
 
 //        // Trying to change images
 //        //"@drawable/drawtile"
@@ -101,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 //        ChangeImage = (ImageView)findViewById(R.id.imageView3);
 //        ChangeImage.setImageResource(R.drawable.ic_launcher_background);
 
-    }
+
 
 
 

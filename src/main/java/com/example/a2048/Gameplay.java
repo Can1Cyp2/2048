@@ -1,15 +1,18 @@
 package com.example.a2048;
 
-import android.content.Intent;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.TextView;
 
 import java.util.Random;
 
 public class Gameplay extends AppCompatActivity {
+    private Activity view;
 
     // Sets the screen up
     @Override
@@ -17,15 +20,64 @@ public class Gameplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen);
 
-        configurePlayButton();
+
+        configureLeaveButton();
+        configureMoveUp();
+        configureMoveDown();
+        configureMoveLeft();
+        configureMoveRight();
     }
 
-    public void configurePlayButton(){
+    public void configureLeaveButton(){
         Button backButton = (Button) findViewById(R.id.Main_Screen);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+
+            }
+        });
+    }
+
+    public void configureMoveUp(){
+        Button backButton = (Button) findViewById(R.id.Main_Screen);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveUp();
+
+            }
+        });
+    }
+
+    public void configureMoveDown(){
+        Button backButton = (Button) findViewById(R.id.move_up);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveDown();
+
+            }
+        });
+    }
+
+    public void configureMoveLeft(){
+        Button backButton = (Button) findViewById(R.id.move_left);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveLeft();
+
+            }
+        });
+    }
+
+    public void configureMoveRight(){
+        Button backButton = (Button) findViewById(R.id.move_right);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveUp();
 
             }
         });
@@ -54,6 +106,30 @@ public class Gameplay extends AppCompatActivity {
          *  [0, 0, 0, 0],
          *  [0, 0, 0, 0],
          *  [0, 0, 0, 0]], */
+    }
+
+    public void run_display_grid(){
+        System.out.println(String.valueOf(Gameplay.grid));
+        display_grid(view);
+    }
+
+
+    // Displays the numbers to the grid
+    public void display_grid(Activity view) {
+        TextView pointView = ((TextView) findViewById(R.id.textView2));
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                String grid_num = "grid" + x + "_" + y;
+                System.out.println(String.valueOf(Gameplay.grid[x][y]));
+
+                // Turning the space of the grid to an ID so it can be displayed
+                int boxID = getResources().getIdentifier(grid_num, "id", getPackageName());
+                ((TextView) findViewById(boxID)).setText(String.valueOf(Gameplay.grid[x][y]));
+
+                //((TextView) findViewById(R.id.grid0_0)).setText(String.valueOf(Gameplay.grid[x][y]));
+                //System.out.println("clear");
+            }
+        }
     }
 
     public static boolean isSpotEmpty(int x, int y) {
@@ -117,7 +193,14 @@ public class Gameplay extends AppCompatActivity {
 
     /* TODO Check if the player can make any more moves
     public boolean availableMoves() {
-
+        move_count = 0;
+        moveRight();
+        moveLeft();
+        moveUp();
+        moveDown();
+        if (move_count == 4){
+            MainActivity.game_lost = true;
+        }
     } */
 
 
@@ -149,6 +232,7 @@ public class Gameplay extends AppCompatActivity {
                     }
                 }
             }
+            run_display_grid();
         }
 
         // moves grid pieces to the left
@@ -176,6 +260,7 @@ public class Gameplay extends AppCompatActivity {
                     }
                 }
             }
+            run_display_grid();
         }
 
         // Moves the grid pieces up
@@ -202,6 +287,7 @@ public class Gameplay extends AppCompatActivity {
                     }
                 }
             }
+            run_display_grid();
         }
 
         // Moves the grid pieces down
@@ -228,6 +314,7 @@ public class Gameplay extends AppCompatActivity {
                     }
                 }
             }
+            run_display_grid();
         }
 
         /* *************************** ^^ MOVEMENT OF GRID PIECES ^^ ******************************* */

@@ -9,4 +9,9 @@
     <string name="decrease">-</string>
     <string name="leave">LEAVE</string>
     <string name="aaaaaaaa">AAAAAAAA</string>
+    <string name="a">a</string>
+    <string name="left"><![CDATA[<]]></string>
+    <string name="right"><![CDATA[>]]></string>
+    <string name="up">^</string>
+    <string name="down">v</string>
 </resources>
