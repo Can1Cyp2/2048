@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public boolean game_lost = false;   // if the player lost or not
+    public static boolean game_lost = false;   // if the player lost or not
 
 
     // RUNS THE GAME
