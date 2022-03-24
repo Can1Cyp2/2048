@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Gameplay extends AppCompatActivity {
@@ -28,7 +27,7 @@ public class Gameplay extends AppCompatActivity {
         configureMoveRight();
     }
 
-    public void configureLeaveButton(){
+    public void configureLeaveButton() {
         Button backButton = (Button) findViewById(R.id.Main_Screen);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +38,7 @@ public class Gameplay extends AppCompatActivity {
         });
     }
 
-    public void configureMoveUp(){
+    public void configureMoveUp() {
         Button backButton = (Button) findViewById(R.id.move_up);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +49,7 @@ public class Gameplay extends AppCompatActivity {
         });
     }
 
-    public void configureMoveDown(){
+    public void configureMoveDown() {
         Button backButton = (Button) findViewById(R.id.move_down);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +60,7 @@ public class Gameplay extends AppCompatActivity {
         });
     }
 
-    public void configureMoveLeft(){
+    public void configureMoveLeft() {
         Button backButton = (Button) findViewById(R.id.move_left);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,17 +71,16 @@ public class Gameplay extends AppCompatActivity {
         });
     }
 
-    public void configureMoveRight(){
+    public void configureMoveRight() {
         Button backButton = (Button) findViewById(R.id.move_right);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                moveUp();
+                moveRight();
 
             }
         });
     }
-
 
 
     public static final int GRIDSIZE = 4; // Size of default grid
@@ -116,7 +114,8 @@ public class Gameplay extends AppCompatActivity {
     }
     */
 
-    public void run_display_grid(){
+
+    public void run_display_grid() {
         display_grid(view);
     }
 
@@ -124,20 +123,20 @@ public class Gameplay extends AppCompatActivity {
     // Displays the numbers to the grid
     public void display_grid(Activity view) {
 
-        System.out.println(Arrays.deepToString(grid));
+        //System.out.println(Arrays.deepToString(grid)); Displays full grid
         for (int x = 0; x < 4; x++) {
             for (int y = 0; y < 4; y++) {
                 String grid_num = "grid" + x + "_" + y;
-                System.out.println(String.valueOf(Gameplay.grid[x][y]));
+                //System.out.println(String.valueOf(Gameplay.grid[x][y])); // Showing the grid contents
 
                 // Turning the space of the grid to an ID so it can be displayed
                 int boxID = getResources().getIdentifier(grid_num, "id", getPackageName());
                 ((TextView) findViewById(boxID)).setText(String.valueOf(Gameplay.grid[x][y]));
 
-
             }
         }
     }
+
 
     public static boolean isSpotEmpty(int x, int y) {
         // If spot in grid is equal to 0 it is empty, function returns true
@@ -146,7 +145,7 @@ public class Gameplay extends AppCompatActivity {
 
 
     // Returns number of available spots left
-    public static int availableSpots() {
+    private static int availableSpots() {
         int availableCount = 0; // Number of empty spaces
 
         // Checks if spaces on grid are empty
@@ -161,23 +160,54 @@ public class Gameplay extends AppCompatActivity {
     }
 
 
-    // Checks if there are any empty spots and possible spots for the player to move
-    public static boolean endGame() {
-        // TODO Finish end game function by seeing if there are possible moves for player
+    // Checks if the player can make any more moves
+    private static boolean availableMoves() {
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                if (isSpotEmpty(x, y)) {
+                    System.out.println("1");
+                    return true;
+                }
+                if (x < 3) {
+                    if (grid[x][y] == grid[x + 1][y]) {
+                        return true;
+                    }
+                }
 
-        boolean end_game = false;
-
-        //if (availableSpots() == 0 && !availableMoves){
-        //end_game = true;
-
-        return end_game;
+                if (y < 3) {
+                    if (grid[x][y] == grid[x][y + 1]) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 
+
+
+
+    // Checks if there are any empty spots and possible spots for the player to move
+    public void endGame() {
+        System.out.println(availableMoves() + " " + availableSpots());
+        if (availableSpots() == 0 && !availableMoves()){
+            System.out.println("GAME LOST");
+            //((TextView) findViewById(R.id.input_points)).setText("GAME LOST");
+        }
+
+        return;
+        // Returns nothing if there are moves the player can make
+    }
+
+
+
     // Fills a random spot on the board with a 2 or 4
-    public static void fillRandomSpot() {
+    public static void fillRandomSpot(){
         Random rand = new Random();
         int x, y;
+
+        if (availableSpots() == 0) return;
 
         // Finds an empty space on the grid
         do {
@@ -198,28 +228,17 @@ public class Gameplay extends AppCompatActivity {
         grid[x][y] = fill_num;
     }
 
-    /* TODO Check if the player can make any more moves
-    public boolean availableMoves() {
-        move_count = 0;
-        moveRight();
-        moveLeft();
-        moveUp();
-        moveDown();
-        if (move_count == 4){
-            MainActivity.game_lost = true;
-        }
-    } */
 
 
 
 
-        // TODO: fix movement to make sure it is working
+
         /* ****************************** MOVEMENT OF GRID PIECES: ******************************* */
 
         // moves grid pieces to the right
         public void moveRight() {
             // moving down the double array, to move right
-            for (int x = 4; x >= 0; x--) {
+            for (int x = 2; x >= 0; x--) {
                 for (int y = 0; y < 4; y++) {
 
                     // If the space is not empty break out of the loop, do not move the number
@@ -240,6 +259,7 @@ public class Gameplay extends AppCompatActivity {
                     }
                 }
             }
+            endGame();
             fillRandomSpot();
             run_display_grid();
         }
@@ -269,6 +289,7 @@ public class Gameplay extends AppCompatActivity {
                     }
                 }
             }
+            endGame();
             fillRandomSpot();
             run_display_grid();
         }
@@ -297,6 +318,7 @@ public class Gameplay extends AppCompatActivity {
                     }
                 }
             }
+            endGame();
             fillRandomSpot();
             run_display_grid();
         }
@@ -325,6 +347,7 @@ public class Gameplay extends AppCompatActivity {
                     }
                 }
             }
+            endGame();
             fillRandomSpot();
             run_display_grid();
         }
