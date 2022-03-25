@@ -176,7 +176,6 @@
         android:id="@+id/point_goal"
         android:layout_width="205dp"
         android:layout_height="58dp"
-        android:text="@string/a"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -244,6 +243,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/move_up"
         app:layout_constraintVertical_bias="0.346" />
+
+    <TextView
+        android:id="@+id/userScore"
+        android:layout_width="155dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="32dp"
+        android:text="Score:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.362"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/point_goal" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
