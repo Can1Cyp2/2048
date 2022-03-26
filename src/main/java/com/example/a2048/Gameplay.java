@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,7 +42,7 @@ public class Gameplay extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                startActivity(new Intent(Gameplay.this, MainActivity.class));;
 
             }
         });
@@ -127,7 +128,6 @@ public class Gameplay extends AppCompatActivity {
     } */
 
 
-
     public void run_display_grid() {
         display_grid(view);
     }
@@ -150,7 +150,7 @@ public class Gameplay extends AppCompatActivity {
         }
 
         updateScore();
-        ((TextView)findViewById(R.id.userScore)).setText("Score: " + Integer.toString(user_score));
+        ((TextView) findViewById(R.id.userScore)).setText("Score: " + Integer.toString(user_score));
 
     }
 
@@ -202,15 +202,11 @@ public class Gameplay extends AppCompatActivity {
     }
 
 
-
-
-
     // Checks if there are any empty spots and possible spots for the player to move
     public void endGame() {
         System.out.println(availableMoves() + " " + availableSpots());
-        if (availableSpots() == 0 && !availableMoves()){
-            System.out.println("GAME LOST");
-
+        if (availableSpots() == 0 && !availableMoves()) {
+            gameEnd();
 
             /*
             try {
@@ -258,14 +254,10 @@ public class Gameplay extends AppCompatActivity {
             } */
 
             //((TextView) findViewById(R.id.input_points)).setText("GAME LOST");
-            
+
         }
 
 
-
-        /*if (user_score >= target_score) {
-             Notify user they've won, give option to continue playing
-        }*/
 
 
         return;
@@ -273,9 +265,8 @@ public class Gameplay extends AppCompatActivity {
     }
 
 
-
     // Fills a random spot on the board with a 2 or 4
-    public static void fillRandomSpot(){
+    public static void fillRandomSpot() {
         Random rand = new Random();
         int x, y;
 
@@ -305,126 +296,126 @@ public class Gameplay extends AppCompatActivity {
 
 
 
-        /* ****************************** MOVEMENT OF GRID PIECES: ******************************* */
+    /* ****************************** MOVEMENT OF GRID PIECES: ******************************* */
 
-        // moves grid pieces to the right
-        public void moveRight() {
-            // moving down the double array, to move right
-            for (int x = 2; x >= 0; x--) {
-                for (int y = 0; y < 4; y++) {
+    // moves grid pieces to the right
+    public void moveRight() {
+        // moving down the double array, to move right
+        for (int x = 2; x >= 0; x--) {
+            for (int y = 0; y < 4; y++) {
 
-                    // If the space is not empty break out of the loop, do not move the number
-                    if (grid[x][y] == 0) continue;
+                // If the space is not empty break out of the loop, do not move the number
+                if (grid[x][y] == 0) continue;
 
-                    // Moving the numbers
-                    int z = x; // Checking for z in place of x:
-                    while (z < 3 && grid[z + 1][y] == 0) {
-                        grid[z + 1][y] = grid[z][y];
+                // Moving the numbers
+                int z = x; // Checking for z in place of x:
+                while (z < 3 && grid[z + 1][y] == 0) {
+                    grid[z + 1][y] = grid[z][y];
+                    grid[z][y] = 0;
+                    z++;
+                }
+                if (z < 3) {
+                    if (grid[z + 1][y] == grid[z][y]) {
+                        grid[z + 1][y] *= 2;
                         grid[z][y] = 0;
-                        z++;
-                    }
-                    if (z < 3) {
-                        if (grid[z + 1][y] == grid[z][y]) {
-                            grid[z + 1][y] *= 2;
-                            grid[z][y] = 0;
-                        }
                     }
                 }
             }
-            endGame();
-            fillRandomSpot();
-            run_display_grid();
         }
+        endGame();
+        fillRandomSpot();
+        run_display_grid();
+    }
 
-        // moves grid pieces to the left
-        public void moveLeft () {
-            // moving up the double array, to move left
-            for (int x = 0; x < 4; x++) {
-                for (int y = 0; y < 4; y++) {
+    // moves grid pieces to the left
+    public void moveLeft() {
+        // moving up the double array, to move left
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
 
-                    // If the space is not empty break out of the loop, do not move the number
-                    if (grid[x][y] == 0) continue;
+                // If the space is not empty break out of the loop, do not move the number
+                if (grid[x][y] == 0) continue;
 
-                    // Moving the numbers left
-                    int z = x; // Checking for z in place of x:
-                    while (z > 0 && grid[z - 1][y] == 0) {
-                        grid[z - 1][y] = grid[z][y];
+                // Moving the numbers left
+                int z = x; // Checking for z in place of x:
+                while (z > 0 && grid[z - 1][y] == 0) {
+                    grid[z - 1][y] = grid[z][y];
+                    grid[z][y] = 0;
+                    z--;
+                }
+
+                if (z > 0) {
+                    if (grid[z - 1][y] == grid[z][y]) {
+                        grid[z - 1][y] *= 2;
                         grid[z][y] = 0;
-                        z--;
-                    }
-
-                    if (z > 0) {
-                        if (grid[z - 1][y] == grid[z][y]) {
-                            grid[z - 1][y] *= 2;
-                            grid[z][y] = 0;
-                        }
                     }
                 }
             }
-            endGame();
-            fillRandomSpot();
-            run_display_grid();
         }
+        endGame();
+        fillRandomSpot();
+        run_display_grid();
+    }
 
-        // Moves the grid pieces up
-        public void moveUp () {
-            // Moving grid pieces up the double array by moving left in the array
-            for (int x = 0; x < 4; x++) {
-                for (int y = 0; y < 4; y++) {
+    // Moves the grid pieces up
+    public void moveUp() {
+        // Moving grid pieces up the double array by moving left in the array
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
 
-                    // If the space is not empty break out of the loop, do not move the number
-                    if (grid[x][y] == 0) continue;
+                // If the space is not empty break out of the loop, do not move the number
+                if (grid[x][y] == 0) continue;
 
-                    int j = y;
-                    while (j > 0 && grid[x][j - 1] == 0) {
-                        grid[x][j - 1] = grid[x][j];
+                int j = y;
+                while (j > 0 && grid[x][j - 1] == 0) {
+                    grid[x][j - 1] = grid[x][j];
+                    grid[x][j] = 0;
+                    j--;
+                }
+
+                if (j > 0) {
+                    if (grid[x][j - 1] == grid[x][j]) {
+                        grid[x][j - 1] *= 2;
                         grid[x][j] = 0;
-                        j--;
-                    }
-
-                    if (j > 0) {
-                        if (grid[x][j - 1] == grid[x][j]) {
-                            grid[x][j - 1] *= 2;
-                            grid[x][j] = 0;
-                        }
                     }
                 }
             }
-            endGame();
-            fillRandomSpot();
-            run_display_grid();
         }
+        endGame();
+        fillRandomSpot();
+        run_display_grid();
+    }
 
-        // Moves the grid pieces down
-        public void moveDown () {
-            // Moving grid pieces down by moving right in the double array
-            for (int x = 0; x < 4; x++) {
-                for (int y = 0; y < 4; y++) {
+    // Moves the grid pieces down
+    public void moveDown() {
+        // Moving grid pieces down by moving right in the double array
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
 
-                    // If the space is not empty break out of the loop, do not move the number
-                    if (grid[x][y] == 0) continue;
+                // If the space is not empty break out of the loop, do not move the number
+                if (grid[x][y] == 0) continue;
 
-                    int j = y;
-                    while (j < 3 && grid[x][j + 1] == 0) {
-                        grid[x][j + 1] = grid[x][j];
+                int j = y;
+                while (j < 3 && grid[x][j + 1] == 0) {
+                    grid[x][j + 1] = grid[x][j];
+                    grid[x][j] = 0;
+                    j++;
+                }
+
+                if (j < 3) {
+                    if (grid[x][j + 1] == grid[x][j]) {
+                        grid[x][j + 1] *= 2;
                         grid[x][j] = 0;
-                        j++;
-                    }
-
-                    if (j < 3) {
-                        if (grid[x][j + 1] == grid[x][j]) {
-                            grid[x][j + 1] *= 2;
-                            grid[x][j] = 0;
-                        }
                     }
                 }
             }
-            endGame();
-            fillRandomSpot();
-            run_display_grid();
         }
+        endGame();
+        fillRandomSpot();
+        run_display_grid();
+    }
 
-        /* *************************** ^^ MOVEMENT OF GRID PIECES ^^ ******************************* */
+    /* *************************** ^^ MOVEMENT OF GRID PIECES ^^ ******************************* */
 
     public static void updateScore() {
         user_score = grid[0][0];
@@ -439,5 +430,8 @@ public class Gameplay extends AppCompatActivity {
 
     }
 
-
+    public void gameEnd() {
+        startActivity(new Intent(Gameplay.this, gameEnd.class));
     }
+
+}
