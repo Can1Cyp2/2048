@@ -212,7 +212,7 @@ public class Gameplay extends AppCompatActivity {
             try {
                 File highScores = new File(getFilesDir(), "highscores.txt");
                 highScores.createNewFile();                                             // Creates file to store scores if it doesn't exist already
-                FileWriter hsWriter = new FileWriter("highscores.txt");         // Used to write scores to the file
+                FileWriter hsWriter = new FileWriter("highscores.txt");                 // Used to write scores to the file
                 Scanner hsReader = new Scanner(highScores);                             // Used to read scores from the file
 
                 String[] highScoresList = new String[5];
@@ -225,7 +225,7 @@ public class Gameplay extends AppCompatActivity {
 
                 hsReader.close();
 
-                for (int a = 0; a < 5; a ++) {                      // Fills up empty list spots with 0 before trying to add a score to the list (for the first time the file is created)
+                for (int a = 0; a < 5; a ++) {                                          // Fills up empty list spots with 0 before trying to add a score to the list (for the first time the file is created)
                     if (highScoresList[a].equals(null)) {
                         highScoresList[a] = "0";
                     }
@@ -243,7 +243,7 @@ public class Gameplay extends AppCompatActivity {
                     }
                 }
 
-                for (int d = 0; d < 5; d++) {                           // Writes scores to file, may need to use BufferedWriter instead for .newLine
+                for (int d = 0; d < 5; d++) {                                           // Writes scores to file, may need to use BufferedWriter instead for .newLine
                     hsWriter.write(highScoresList[d]);
                 }
 
@@ -253,12 +253,7 @@ public class Gameplay extends AppCompatActivity {
                 System.out.println(error);
             } */
 
-            //((TextView) findViewById(R.id.input_points)).setText("GAME LOST");
-
         }
-
-
-
 
         return;
         // Returns nothing if there are moves the player can make
