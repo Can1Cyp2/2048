@@ -7,11 +7,12 @@
 
     <TextView
         android:id="@+id/result"
-        android:layout_width="117dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="235dp"
+        android:layout_height="179dp"
         android:text="WIN/LOSS"
-        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/final_score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,11 +21,14 @@
         android:id="@+id/replay_button"
         android:layout_width="114dp"
         android:layout_height="71dp"
-        android:layout_marginStart="64dp"
         android:layout_marginTop="132dp"
-        android:text="REPLAY"
+        android:text="Keep Playing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.232"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/final_score" />
+        app:layout_constraintTop_toBottomOf="@+id/final_score"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/menu_button"
@@ -32,19 +36,23 @@
         android:layout_height="71dp"
         android:layout_marginTop="132dp"
         android:text="MENU"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.445"
+        app:layout_constraintHorizontal_bias="0.411"
         app:layout_constraintStart_toEndOf="@+id/replay_button"
-        app:layout_constraintTop_toBottomOf="@+id/final_score" />
+        app:layout_constraintTop_toBottomOf="@+id/final_score"
+        app:layout_constraintVertical_bias="0.004" />
 
     <TextView
         android:id="@+id/final_score"
-        android:layout_width="113dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="116dp"
+        android:layout_width="219dp"
+        android:layout_height="177dp"
         android:text="0"
-        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textSize="55sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.454" />
 </androidx.constraintlayout.widget.ConstraintLayout>

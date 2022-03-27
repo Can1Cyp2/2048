@@ -1,10 +1,13 @@
 package com.example.a2048;
 
+import static java.lang.Integer.parseInt;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,7 +36,9 @@ public class Gameplay extends AppCompatActivity {
         configureMoveDown();
         configureMoveLeft();
         configureMoveRight();
-        ((TextView)findViewById(R.id.userScore)).setText("Click a movement button to start your game");
+
+        // Setting up the intro text
+        ((TextView)findViewById(R.id.point_goal)).setText("Click a movement button to start your game");
     }
 
     public void configureLeaveButton() {
@@ -67,6 +72,8 @@ public class Gameplay extends AppCompatActivity {
 
     public static int user_score = 0;
 
+    public static boolean game_loss = true;
+
 
     public static void makeGrid(int gridSize) {
         // Creates a grid for the game
@@ -98,12 +105,13 @@ public class Gameplay extends AppCompatActivity {
 
 
 
-    public void run_display_grid() {
+    public void run_displays() {
         display_grid(view);
+        display_points(view);
     }
 
 
-    // Displays the numbers to the grid
+    // Displays the numbers to the grid, and updates the grid
     public void display_grid(Activity view) {
 
         //System.out.println(Arrays.deepToString(grid)); Displays full grid
@@ -122,6 +130,11 @@ public class Gameplay extends AppCompatActivity {
         updateScore();
         ((TextView)findViewById(R.id.userScore)).setText("Score: " + user_score);
 
+    }
+
+
+    public void display_points(Activity view){
+        ((TextView)findViewById(R.id.point_goal)).setText("Point goal: " + MainActivity.user_goal);
     }
 
 
@@ -177,12 +190,14 @@ public class Gameplay extends AppCompatActivity {
 
     // Checks if there are any empty spots and possible spots for the player to move
     public void endGame() {
-        System.out.println(availableMoves() + " " + availableSpots());
-        if (availableSpots() == 0 && !availableMoves()){
+        // System.out.println(availableMoves() + " " + availableSpots()); // Shows if there are available moves left and how many spots open
+        if (availableSpots() == 0 && !availableMoves()) {
             System.out.println("GAME LOST");
+            startActivity(new Intent(Gameplay.this, gameEnd.class));
 
 
-            /*
+
+            /* For file writing in order to keep high scores:
             try {
                 File highScores = new File(getFilesDir(), "highscores.txt");
                 highScores.createNewFile();                                             // Creates file to store scores if it doesn't exist already
@@ -228,15 +243,16 @@ public class Gameplay extends AppCompatActivity {
             } */
 
             //((TextView) findViewById(R.id.input_points)).setText("GAME LOST");
-            
+
         }
 
 
+        if (user_score >= parseInt(MainActivity.user_goal)){
+            //Notify's the user they've won, give option to continue playing
+            game_loss = false;
+            startActivity(new Intent(Gameplay.this, gameEnd.class));
 
-        /*if (user_score >= target_score) {
-             Notify user they've won, give option to continue playing
-        }*/
-
+        }
     }
 
 
@@ -300,7 +316,7 @@ public class Gameplay extends AppCompatActivity {
             }
             endGame();
             fillRandomSpot();
-            run_display_grid();
+            run_displays();
         }
 
         // moves grid pieces to the left
@@ -330,7 +346,7 @@ public class Gameplay extends AppCompatActivity {
             }
             endGame();
             fillRandomSpot();
-            run_display_grid();
+            run_displays();
         }
 
         // Moves the grid pieces up
@@ -359,7 +375,7 @@ public class Gameplay extends AppCompatActivity {
             }
             endGame();
             fillRandomSpot();
-            run_display_grid();
+            run_displays();
         }
 
         // Moves the grid pieces down
@@ -388,7 +404,7 @@ public class Gameplay extends AppCompatActivity {
             }
             endGame();
             fillRandomSpot();
-            run_display_grid();
+            run_displays();
         }
 
         /* *************************** ^^ MOVEMENT OF GRID PIECES ^^ ******************************* */

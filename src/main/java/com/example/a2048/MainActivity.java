@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         configurePlayButton();
         configureInstructionsButton();
-        configureHiScoresButton();
+        // configureHiScoresButton(); Not needed
     }
 
     public void configurePlayButton(){
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /*  NOT NEEDED
     public void configureHiScoresButton() {
         Button hiscores = (Button) findViewById(R.id.high_scores);
         hiscores.setOnClickListener(new View.OnClickListener() {
@@ -62,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Scores.class));
             }
         });
-    }
+    } */
 
-    public static boolean game_lost = false;   // if the player lost or not
+    public static String user_goal = "2048"; // The users point goal, default 2048
 
 
     // RUNS THE GAME
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         // Makes the grid to start the game
         System.out.println("GAME STARTED");
 
-        System.out.println(Arrays.deepToString(Gameplay.grid));
+        //System.out.println(Arrays.deepToString(Gameplay.grid)); // Displays grid
         Gameplay.makeGrid(Gameplay.GRIDSIZE);
 
     }
@@ -89,9 +90,10 @@ public class MainActivity extends AppCompatActivity {
         String goal = (String.valueOf(points));
 
         // Max amount of points the user can use
-        if (points <= 16384) {
+        if (points <= 8192) {
             ((TextView) findViewById(R.id.input_points)).setText(goal);
         }
+        user_goal = goal;
     }
 
 
@@ -105,9 +107,11 @@ public class MainActivity extends AppCompatActivity {
         String goal = (String.valueOf(points));
 
         // Max amount of points the user can use
-        if (points >= 64) {
+        if (points >= 32) {
             ((TextView) findViewById(R.id.input_points)).setText(goal);
+
         }
+        user_goal = goal;
     }
 
 
