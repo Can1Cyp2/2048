@@ -13,7 +13,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/point_goal">
+        app:layout_constraintTop_toBottomOf="@+id/point_goal"
+        android:background="@drawable/background_rectangle">
 
         <TextView
             android:id="@+id/grid1_1"
@@ -22,7 +23,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="1"
-            app:layout_row="1" />
+            app:layout_row="1"
+            android:background="@drawable/cell_rectangle"/>
 
         <TextView
             android:id="@+id/grid1_2"
@@ -31,7 +33,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="1"
-            app:layout_row="2" />
+            app:layout_row="2"
+            android:background="@drawable/cell_rectangle_2"/>
 
         <TextView
             android:id="@+id/grid1_3"
@@ -40,7 +43,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="1"
-            app:layout_row="3" />
+            app:layout_row="3"
+            android:background="@drawable/cell_rectangle_4"/>
 
         <TextView
             android:id="@+id/grid0_1"
@@ -49,7 +53,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="0"
-            app:layout_row="1" />
+            app:layout_row="1"
+            android:background="@drawable/cell_rectangle_8"/>
 
         <TextView
             android:id="@+id/grid0_2"
@@ -58,7 +63,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="0"
-            app:layout_row="2" />
+            app:layout_row="2"
+            android:background="@drawable/cell_rectangle_16"/>
 
         <TextView
             android:id="@+id/grid0_3"
@@ -67,7 +73,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="0"
-            app:layout_row="3" />
+            app:layout_row="3"
+            android:background="@drawable/cell_rectangle_32"/>
 
         <TextView
             android:id="@+id/grid2_0"
@@ -76,7 +83,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="2"
-            app:layout_row="0" />
+            app:layout_row="0"
+            android:background="@drawable/cell_rectangle_64"/>
 
         <TextView
             android:id="@+id/grid2_1"
@@ -85,7 +93,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="2"
-            app:layout_row="1" />
+            app:layout_row="1"
+            android:background="@drawable/cell_rectangle_8"/>
 
         <TextView
             android:id="@+id/grid2_2"
@@ -94,7 +103,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="2"
-            app:layout_row="2" />
+            app:layout_row="2"
+            android:background="@drawable/cell_rectangle_128"/>
 
         <TextView
             android:id="@+id/grid2_3"
@@ -103,7 +113,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="2"
-            app:layout_row="3" />
+            app:layout_row="3"
+            android:background="@drawable/cell_rectangle_256"/>
 
         <TextView
             android:id="@+id/grid3_0"
@@ -112,7 +123,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="3"
-            app:layout_row="0" />
+            app:layout_row="0"
+            android:background="@drawable/cell_rectangle_2"/>/>
 
         <TextView
             android:id="@+id/grid3_1"
@@ -121,7 +133,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="3"
-            app:layout_row="1" />
+            app:layout_row="1"
+            android:background="@drawable/cell_rectangle_2048"/>/>
 
         <TextView
             android:id="@+id/grid3_2"
@@ -130,7 +143,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="3"
-            app:layout_row="2" />
+            app:layout_row="2"
+            android:background="@drawable/cell_rectangle_8"/>/>
 
         <TextView
             android:id="@+id/grid3_3"
@@ -139,7 +153,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="3"
-            app:layout_row="3" />
+            app:layout_row="3"
+            android:background="@drawable/cell_rectangle_16"/>/>
 
         <TextView
             android:id="@+id/grid1_0"
@@ -148,7 +163,8 @@
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_column="1"
-            app:layout_row="0" />
+            app:layout_row="0"
+            android:background="@drawable/cell_rectangle_8"/>/>
 
         <TextView
             android:id="@+id/grid0_0"
@@ -159,7 +175,6 @@
             app:layout_column="0"
             app:layout_row="0" />
     </androidx.gridlayout.widget.GridLayout>
-
     <Button
         android:id="@+id/Main_Screen"
         android:layout_width="wrap_content"
@@ -176,7 +191,6 @@
         android:id="@+id/point_goal"
         android:layout_width="205dp"
         android:layout_height="58dp"
-        android:text="@string/a"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -244,6 +258,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/move_up"
         app:layout_constraintVertical_bias="0.346" />
+
+    <TextView
+        android:id="@+id/userScore"
+        android:layout_width="347dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/score"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/point_goal"
+        app:layout_constraintVertical_bias="0.258" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

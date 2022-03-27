@@ -4,12 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Random;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Gameplay extends AppCompatActivity {
     private Activity view;
@@ -25,66 +33,39 @@ public class Gameplay extends AppCompatActivity {
         configureMoveDown();
         configureMoveLeft();
         configureMoveRight();
+        ((TextView)findViewById(R.id.userScore)).setText("Click a movement button to start your game");
     }
 
     public void configureLeaveButton() {
         Button backButton = (Button) findViewById(R.id.Main_Screen);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-
-            }
-        });
+        backButton.setOnClickListener(this::onClick);
     }
 
     public void configureMoveUp() {
         Button backButton = (Button) findViewById(R.id.move_up);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                moveUp();
-
-            }
-        });
+        backButton.setOnClickListener(this::onClick2);
     }
 
     public void configureMoveDown() {
         Button backButton = (Button) findViewById(R.id.move_down);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                moveDown();
-
-            }
-        });
+        backButton.setOnClickListener(this::onClick3);
     }
 
     public void configureMoveLeft() {
         Button backButton = (Button) findViewById(R.id.move_left);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                moveLeft();
-
-            }
-        });
+        backButton.setOnClickListener(this::onClick4);
     }
 
     public void configureMoveRight() {
         Button backButton = (Button) findViewById(R.id.move_right);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                moveRight();
-
-            }
-        });
+        backButton.setOnClickListener(this::onClick5);
     }
 
 
     public static final int GRIDSIZE = 4; // Size of default grid
     public static int[][] grid = new int[GRIDSIZE][GRIDSIZE];  // Creating base grid
+
+    public static int user_score = 0;
 
 
     public static void makeGrid(int gridSize) {
@@ -107,12 +88,14 @@ public class Gameplay extends AppCompatActivity {
          *  [0, 0, 0, 0]], */
     }
 
-    /* TODO: make point_goal text box display the users chosen point goal
-    public String goal = "Goal: 2048"; // The point goal chosen by the player
-    public void setGoal(){
-        ((TextView) findViewById(R.id.input_points)).setText(goal);
-    }
-    */
+
+    /*public void setGoal(){
+        TextView temp = findViewById(R.id.input_points);
+        String points = temp.getText().toString();
+
+        ((TextView)findViewById(R.id.point_goal)).setText(points);
+    } */
+
 
 
     public void run_display_grid() {
@@ -135,6 +118,10 @@ public class Gameplay extends AppCompatActivity {
 
             }
         }
+
+        updateScore();
+        ((TextView)findViewById(R.id.userScore)).setText("Score: " + user_score);
+
     }
 
 
@@ -193,11 +180,63 @@ public class Gameplay extends AppCompatActivity {
         System.out.println(availableMoves() + " " + availableSpots());
         if (availableSpots() == 0 && !availableMoves()){
             System.out.println("GAME LOST");
+
+
+            /*
+            try {
+                File highScores = new File(getFilesDir(), "highscores.txt");
+                highScores.createNewFile();                                             // Creates file to store scores if it doesn't exist already
+                FileWriter hsWriter = new FileWriter("highscores.txt");         // Used to write scores to the file
+                Scanner hsReader = new Scanner(highScores);                             // Used to read scores from the file
+
+                String[] highScoresList = new String[5];
+                int counter = 0;
+
+                while (hsReader.hasNextLine()) {                                        // Reads in scores from the file
+                    highScoresList[counter] = hsReader.nextLine();
+                    counter++;
+                }
+
+                hsReader.close();
+
+                for (int a = 0; a < 5; a ++) {                      // Fills up empty list spots with 0 before trying to add a score to the list (for the first time the file is created)
+                    if (highScoresList[a].equals(null)) {
+                        highScoresList[a] = "0";
+                    }
+                }
+
+                for (int b = 0; b < 5; b++) {                                           // If the score is high enough to make it to the list, it's added and everything below is pushed down a spot
+                    if (user_score > Integer.parseInt(highScoresList[b])) {
+
+                        for (int c = 4; c > b; c--) {
+                            highScoresList[c] = highScoresList[c - 1];
+                        }
+
+                        highScoresList[b] = Integer.toString(user_score);
+                        break;
+                    }
+                }
+
+                for (int d = 0; d < 5; d++) {                           // Writes scores to file, may need to use BufferedWriter instead for .newLine
+                    hsWriter.write(highScoresList[d]);
+                }
+
+                hsWriter.close();
+
+            } catch (IOException error) {
+                System.out.println(error);
+            } */
+
             //((TextView) findViewById(R.id.input_points)).setText("GAME LOST");
+            
         }
 
-        return;
-        // Returns nothing if there are moves the player can make
+
+
+        /*if (user_score >= target_score) {
+             Notify user they've won, give option to continue playing
+        }*/
+
     }
 
 
@@ -354,4 +393,37 @@ public class Gameplay extends AppCompatActivity {
 
         /* *************************** ^^ MOVEMENT OF GRID PIECES ^^ ******************************* */
 
+    public static void updateScore() {
+        user_score = grid[0][0];
+
+        for (int a = 0; a < 4; a++) {
+            for (int b = 0; b < 4; b++) {
+                if (grid[a][b] > user_score) {
+                    user_score = grid[a][b];
+                }
+            }
+        }
+
     }
+
+
+    private void onClick(View view) {
+        finish();
+    }
+
+    private void onClick2(View view) {
+        moveUp();
+    }
+
+    private void onClick3(View view) {
+        moveDown();
+    }
+
+    private void onClick4(View view) {
+        moveLeft();
+    }
+
+    private void onClick5(View view) {
+        moveRight();
+    }
+}
