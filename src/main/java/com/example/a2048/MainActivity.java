@@ -92,8 +92,9 @@ public class MainActivity extends AppCompatActivity {
         // Max amount of points the user can use
         if (points <= 8192) {
             ((TextView) findViewById(R.id.input_points)).setText(goal);
+            user_goal = goal;
         }
-        user_goal = goal;
+
     }
 
 
@@ -109,9 +110,9 @@ public class MainActivity extends AppCompatActivity {
         // Max amount of points the user can use
         if (points >= 32) {
             ((TextView) findViewById(R.id.input_points)).setText(goal);
-
+            user_goal = goal;
         }
-        user_goal = goal;
+
     }
 
 
