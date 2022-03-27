@@ -22,7 +22,6 @@
         android:layout_width="326dp"
         android:layout_height="365dp"
         android:layout_marginTop="44dp"
-        android:text="List of High Scores: \n\n1. \n\n2. \n\n3. \n\netc."
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
