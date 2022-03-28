@@ -4,8 +4,7 @@
     android:id="@+id/instructions"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#84B4DA"
-    android:backgroundTint="#73ACDA">
+    android:background="@color/Silver">
 
     <TextView
         android:id="@+id/textView"

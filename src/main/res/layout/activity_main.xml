@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/wood"
+    android:backgroundTintMode="screen"
+    android:backgroundTint="@color/Black"
+    >
+
 
 
     <Button
@@ -15,6 +20,7 @@
         android:onClick="pointsUp"
         android:text="@string/plus"
         android:textSize="20sp"
+        android:backgroundTint="@color/Chocolate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.983"
@@ -24,27 +30,32 @@
 
     <TextView
         android:id="@+id/txt_title"
-        android:layout_width="235dp"
-        android:layout_height="136dp"
+        android:layout_width="295dp"
+        android:layout_height="159dp"
+        android:ellipsize="middle"
+        android:fontFamily="sans-serif-black"
         android:text="@string/_2048"
         android:textAlignment="center"
-        android:textSize="84sp"
+        android:textColor="@color/Peru"
+        android:textSize="120sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintVertical_bias="0.091" />
 
     <Button
         android:id="@+id/Game_Start"
-        android:layout_width="203dp"
-        android:layout_height="70dp"
+        android:layout_width="260dp"
+        android:layout_height="91dp"
         android:layout_marginTop="48dp"
+        android:backgroundTint="@color/DarkGoldenrod"
         android:onClick="run"
         android:text="@string/play"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/txt_Points"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_title"
         app:layout_constraintVertical_bias="0.0" />
@@ -55,6 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
         android:text="@string/instructions"
+        android:backgroundTint="@color/Peru"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +77,11 @@
         android:id="@+id/txt_Points"
         android:layout_width="208dp"
         android:layout_height="49dp"
+        android:backgroundTint="@color/Sienna"
+        android:backgroundTintMode="add"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/point_goal"
+        android:textColor="@color/Silver"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,20 +92,21 @@
 
     <TextView
         android:id="@+id/input_points"
-        android:layout_width="172dp"
-        android:layout_height="55dp"
+        android:layout_width="186dp"
+        android:layout_height="65dp"
         android:autofillHints="2048"
         android:ems="10"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/title"
         android:textAlignment="center"
-        android:textColor="#0C1BA1"
-        android:textSize="40sp"
+        android:textColor="@color/Gainsboro"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Goal_Increase"
         app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toEndOf="@+id/Goal_Decrease"
         app:layout_constraintTop_toBottomOf="@+id/txt_Points"
-        app:layout_constraintVertical_bias="0.099" />
+        app:layout_constraintVertical_bias="0.108" />
 
     <Button
         android:id="@+id/Goal_Decrease"
@@ -99,6 +116,7 @@
         android:text="@string/decrease"
         android:textSize="20sp"
         android:onClick="pointsDown"
+        android:backgroundTint="@color/Chocolate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/txt_Points"
         app:layout_constraintHorizontal_bias="0.341"
@@ -110,7 +128,7 @@
         android:id="@+id/divider"
         android:layout_width="409dp"
         android:layout_height="5dp"
-        android:background="?android:attr/listDivider"
+        android:background="@color/DarkGray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
