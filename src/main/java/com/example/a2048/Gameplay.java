@@ -190,67 +190,16 @@ public class Gameplay extends AppCompatActivity {
 
     // Checks if there are any empty spots and possible spots for the player to move
     public void endGame() {
-        // System.out.println(availableMoves() + " " + availableSpots()); // Shows if there are available moves left and how many spots open
-        if (availableSpots() == 0 && !availableMoves()) {
-            System.out.println("GAME LOST");
-            startActivity(new Intent(Gameplay.this, gameEnd.class));
 
-
-
-            /* For file writing in order to keep high scores:
-            try {
-                File highScores = new File(getFilesDir(), "highscores.txt");
-                highScores.createNewFile();                                             // Creates file to store scores if it doesn't exist already
-                FileWriter hsWriter = new FileWriter("highscores.txt");         // Used to write scores to the file
-                Scanner hsReader = new Scanner(highScores);                             // Used to read scores from the file
-
-                String[] highScoresList = new String[5];
-                int counter = 0;
-
-                while (hsReader.hasNextLine()) {                                        // Reads in scores from the file
-                    highScoresList[counter] = hsReader.nextLine();
-                    counter++;
-                }
-
-                hsReader.close();
-
-                for (int a = 0; a < 5; a ++) {                      // Fills up empty list spots with 0 before trying to add a score to the list (for the first time the file is created)
-                    if (highScoresList[a].equals(null)) {
-                        highScoresList[a] = "0";
-                    }
-                }
-
-                for (int b = 0; b < 5; b++) {                                           // If the score is high enough to make it to the list, it's added and everything below is pushed down a spot
-                    if (user_score > Integer.parseInt(highScoresList[b])) {
-
-                        for (int c = 4; c > b; c--) {
-                            highScoresList[c] = highScoresList[c - 1];
-                        }
-
-                        highScoresList[b] = Integer.toString(user_score);
-                        break;
-                    }
-                }
-
-                for (int d = 0; d < 5; d++) {                           // Writes scores to file, may need to use BufferedWriter instead for .newLine
-                    hsWriter.write(highScoresList[d]);
-                }
-
-                hsWriter.close();
-
-            } catch (IOException error) {
-                System.out.println(error);
-            } */
-
-            //((TextView) findViewById(R.id.input_points)).setText("GAME LOST");
-
+        if (availableSpots() == 0 && !availableMoves()) {                               // If out of moves, game is lost
+            game_loss = true;
+            startActivity(new Intent(Gameplay.this, gameEnd.class));        // Sends to gameEnd screen
         }
 
+        if (user_score >= parseInt(MainActivity.user_goal)){                            // If target number is reached, game is won
 
-        if (user_score >= parseInt(MainActivity.user_goal)){
-            //Notify's the user they've won, give option to continue playing
             game_loss = false;
-            startActivity(new Intent(Gameplay.this, gameEnd.class));
+            startActivity(new Intent(Gameplay.this, gameEnd.class));        // Sends to gameEnd screen
 
         }
     }
@@ -415,11 +364,10 @@ public class Gameplay extends AppCompatActivity {
         for (int a = 0; a < 4; a++) {
             for (int b = 0; b < 4; b++) {
                 if (grid[a][b] > user_score) {
-                    user_score = grid[a][b];
+                    user_score = grid[a][b];                // Sets the user's score equal to the current highest number on the grid
                 }
             }
         }
-
     }
 
 
