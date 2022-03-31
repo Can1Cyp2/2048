@@ -101,14 +101,14 @@ public class Gameplay extends AppCompatActivity {
 
 
     public void run_displays() {
-        display_grid(view);
-        display_points(view);
-        updateColours(view);
+        display_grid();
+        display_points();
+        updateColours();
     }
 
 
     // Displays the numbers to the grid, and updates the grid
-    public void display_grid(Activity view) {
+    public void display_grid() {
 
         //System.out.println(Arrays.deepToString(grid)); Displays full grid
         for (int x = 0; x < 4; x++) {
@@ -129,7 +129,7 @@ public class Gameplay extends AppCompatActivity {
     }
 
 
-    public void display_points(Activity view){
+    public void display_points(){
         ((TextView)findViewById(R.id.point_goal)).setText("Point goal: " + MainActivity.user_goal);
     }
 
@@ -367,7 +367,7 @@ public class Gameplay extends AppCompatActivity {
         } 
     }
 
-    public void updateColours(Activity view) {
+    public void updateColours() {
 
         for (int x = 0; x < 4; x++) {
             for (int y = 0; y < 4; y++) {                                                                                       // Cycles through each square on the grid
