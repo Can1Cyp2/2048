@@ -8,6 +8,7 @@ import android.app.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,12 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Random;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 public class Gameplay extends AppCompatActivity {
     private Activity view;
@@ -108,6 +103,7 @@ public class Gameplay extends AppCompatActivity {
     public void run_displays() {
         display_grid(view);
         display_points(view);
+        updateColours(view);
     }
 
 
@@ -358,14 +354,68 @@ public class Gameplay extends AppCompatActivity {
 
         /* *************************** ^^ MOVEMENT OF GRID PIECES ^^ ******************************* */
 
+
     public static void updateScore() {
-        user_score = grid[0][0];
+        user_score = grid[0][0];                            // Sets the user's score equal to the value in the top left square as a baseline
 
         for (int a = 0; a < 4; a++) {
             for (int b = 0; b < 4; b++) {
                 if (grid[a][b] > user_score) {
                     user_score = grid[a][b];                // Sets the user's score equal to the current highest number on the grid
                 }
+            }
+        } 
+    }
+
+    public void updateColours(Activity view) {
+
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                String grid_num = "grid" + x + "_" + y;
+
+                int boxID = getResources().getIdentifier(grid_num, "id", getPackageName());
+
+                switch (grid[x][y]) {           // for some reason grid[x][y] is always null
+                    case 0:
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#cdc1b5"));
+                        break;
+                    case 2:
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#eee4da"));
+                        break;
+                    case 4:
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#ece0c8"));
+                        break;
+                    case 8:
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#f2b179"));
+                        break;
+                    case 16:
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#f59563"));
+                        break;
+                    case 32:
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#f57c5f"));
+                        break;
+                    case 64:
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#f65d3b"));
+                        break;
+                    case 128:
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#eccf73"));
+                        break;
+                    case 256:
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#edcc61"));
+                        break;
+                    case 512:
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#eec84a"));
+                        break;
+                    case 1024:
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#edc53f"));
+                        break;
+                    case 2048:
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#eec22d"));
+                        break;
+                    default:
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#ee235a"));
+                }
+
             }
         }
     }
