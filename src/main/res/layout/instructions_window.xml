@@ -9,35 +9,36 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="357dp"
-        android:layout_height="565dp"
+        android:layout_width="304dp"
+        android:layout_height="470dp"
         android:text="The game consists of a 4x4 grid with numbered tiles that the user adds together by swiping in one of four directions.
-                                             -
-                                                     In order to combine the tiles the numbers have to be equal to each other. Squares of either 2 or 4 are added to the board after every swipe. 2 is more common to appear than 4.                                                   -
-                                               The goal of the game is to reach your point goal, but you can play endlessly as well.
-                    Good luck!"
+                                                     -
+                                                                In order to combine the tiles the numbers have to be equal to each other. Squares of either 2 or 4 are added to the board after every swipe. 2 is more common to appear than 4.
+                                                                -
+                                                                    The goal of the game is to reach your point goal, but you can play endlessly as well.
+                        Good luck!"
         android:textAlignment="center"
         android:textColor="@color/Black"
-        android:textSize="26sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.771" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/titleText"
-        android:layout_width="277dp"
-        android:layout_height="74dp"
+        android:layout_width="252dp"
+        android:layout_height="55dp"
         android:ems="10"
         android:inputType="date"
         android:text="@string/instructions"
-        android:textSize="44sp"
+        android:textSize="33sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.201"
+        app:layout_constraintHorizontal_bias="0.343"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537" />
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
