@@ -370,12 +370,12 @@ public class Gameplay extends AppCompatActivity {
     public void updateColours(Activity view) {
 
         for (int x = 0; x < 4; x++) {
-            for (int y = 0; y < 4; y++) {
+            for (int y = 0; y < 4; y++) {                                                                                       // Cycles through each square on the grid
                 String grid_num = "grid" + x + "_" + y;
 
                 int boxID = getResources().getIdentifier(grid_num, "id", getPackageName());
 
-                switch (grid[x][y]) {           // for some reason grid[x][y] is always null
+                switch (grid[x][y]) {                                                                                           // The square will be made a certain colour depending on the number in it
                     case 0:
                         ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#cdc1b5"));
                         break;
@@ -410,7 +410,7 @@ public class Gameplay extends AppCompatActivity {
                         ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#edc53f"));
                         break;
                     case 2048:
-                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#eec22d"));
+                        ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#eec22d"));             // Only the first 11 numbers were assigned colours but you could continue to assign more colours for every 2^n above 11
                         break;
                     default:
                         ((TextView) findViewById(boxID)).setBackgroundColor(Color.parseColor("#ee235a"));
