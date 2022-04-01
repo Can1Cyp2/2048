@@ -74,8 +74,6 @@ public class Gameplay extends AppCompatActivity {
         // Creates a grid for the game
         // gridSize is standard 4
 
-        final int EMPTY = 0; // Empty value for grid
-
         // Initializing grid values
         for (int x = 0; x < gridSize; x++) {
             for (int y = 0; y < gridSize; y++) {
@@ -89,14 +87,6 @@ public class Gameplay extends AppCompatActivity {
          *  [0, 0, 0, 0],
          *  [0, 0, 0, 0]], */
     }
-
-
-    /*public void setGoal(){
-        TextView temp = findViewById(R.id.input_points);
-        String points = temp.getText().toString();
-
-        ((TextView)findViewById(R.id.point_goal)).setText(points);
-    } */
 
 
 
@@ -123,6 +113,7 @@ public class Gameplay extends AppCompatActivity {
             }
         }
 
+        // Updates the users score with the update of a grid display
         updateScore();
         ((TextView)findViewById(R.id.userScore)).setText("Score: " + user_score);
 
@@ -130,6 +121,7 @@ public class Gameplay extends AppCompatActivity {
 
 
     public void display_points(){
+        // Displays the users points
         ((TextView)findViewById(R.id.point_goal)).setText("Point goal: " + MainActivity.user_goal);
     }
 
@@ -160,10 +152,14 @@ public class Gameplay extends AppCompatActivity {
     private static boolean availableMoves() {
         for (int x = 0; x < 4; x++) {
             for (int y = 0; y < 4; y++) {
+
+                // if there is an empty spot then return true. The player can move
                 if (isSpotEmpty(x, y)) {
                     System.out.println("1");
                     return true;
                 }
+
+
                 if (x < 3) {
                     if (grid[x][y] == grid[x + 1][y]) {
                         return true;
@@ -177,6 +173,8 @@ public class Gameplay extends AppCompatActivity {
                 }
             }
         }
+
+        // If there are no moves to be made then return false
         return false;
     }
 
@@ -203,7 +201,7 @@ public class Gameplay extends AppCompatActivity {
 
 
     // Fills a random spot on the board with a 2 or 4
-    public static void fillRandomSpot(){
+    public void fillRandomSpot(){
         Random rand = new Random();
         int x, y;
 
@@ -218,12 +216,87 @@ public class Gameplay extends AppCompatActivity {
         } while (!isSpotEmpty(x, y));
 
         // Getting number to fill the empty grid spot
-        int num = rand.nextInt(10);
+        int randNum = rand.nextInt(10);
 
+        int high = 4;   // The highest random number to generate
+        int low = 2;    // The lowest random number to generate
+
+
+        // The high and low numbers change based on the users score making the game easier to continue
+        if (user_score == 64){
+            // Low is the default value -> low = 2
+
+            // 25% chance the highest number will be an 8
+            int randHigh = rand.nextInt(4);
+            if (randHigh == 3) {
+                high = 8;
+            }
+            else{
+                high = 4;
+            }
+
+        }
+
+        else if (user_score == 128){
+            // No more 2's will be spawned on the grid
+            high = 8;
+            low = 4;
+
+            // Removes the number 2 and replaces it with 4 because 2 will not spawn anymore
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    if (grid[i][j] == 2) grid[i][j] = 4;
+                }
+            }
+        }
+
+        else if (user_score == 256){
+            high = 16;
+
+            // About a 66% chance the lowest number will be an 8, 33% it is 4
+            int randLow = rand.nextInt(3);
+            if (randLow == 2) {
+                low = 8;
+            }
+            else{
+                low = 4;
+            }
+        }
+        else if (user_score == 512){
+            high = 32;
+
+            // 50% chance the lowest number will be an 8
+            int randLow = rand.nextInt(2);
+            if (randLow == 1) {
+                low = 16;
+            }
+            else{
+                low = 8;
+            }
+
+            // Removes the number 4 and replaces it with 8 because 4 will not spawn anymore
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    if (grid[i][j] == 4) grid[i][j] = 8;
+                }
+            }
+        }
+
+        else if (user_score >= 1024){
+            high = 64;
+            low = 32;
+            // Removes the numbers 16 and 8 by replacing it with 0 because those numbers will not spawn anymore
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    if (grid[i][j] == 8 || grid[i][j] == 16) grid[i][j] = 0;
+                    // Replacing with 0 provides the user with more opportunity to continue the game
+                }
+            }
+        }
         // Less of a chance to place a 4
         int fill_num = 0;
-        if (num < 8) fill_num = 2;
-        else fill_num = 4;
+        if (randNum < 8) fill_num = low;
+        else fill_num = high;   // 30% chance to get a high number
 
         grid[x][y] = fill_num;
     }

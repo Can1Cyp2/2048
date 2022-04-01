@@ -13,7 +13,7 @@
         android:layout_height="470dp"
         android:text="The game consists of a 4x4 grid with numbered tiles that the user adds together by swiping in one of four directions.
                                                      -
-                                                                In order to combine the tiles the numbers have to be equal to each other. Squares of either 2 or 4 are added to the board after every swipe. 2 is more common to appear than 4.
+                                                                In order to combine the tiles the numbers have to be equal to each other. Squares of either 2 or 4 are added to the board after every swipe. These numbers get higher based on the users score.
                                                                 -
                                                                     The goal of the game is to reach your point goal, but you can play endlessly as well.
                         Good luck!"
@@ -22,9 +22,10 @@
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.973" />
 
     <EditText
         android:id="@+id/titleText"
