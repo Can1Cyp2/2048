@@ -91,6 +91,7 @@ public class Gameplay extends AppCompatActivity {
 
 
     public void run_displays() {
+        // Runs all the necessary functions to keep the gameplay screen updated
         display_grid();
         display_points();
         updateColours();
