@@ -262,16 +262,15 @@ public class Gameplay extends AppCompatActivity {
                 low = 4;
             }
         }
-        else if (user_score == 512){
-            high = 32;
 
-            // 50% chance the lowest number will be an 8
-            int randLow = rand.nextInt(2);
-            if (randLow == 1) {
-                low = 16;
-            }
-            else{
-                low = 8;
+        else if (user_score == 512){
+            high = 16;
+            low = 8;
+
+            // 25% chance the highest number will be a 32
+            int randHigh = rand.nextInt(4);
+            if (randHigh == 3) {
+                high = 32;
             }
 
             // Removes the number 4 and replaces it with 8 because 4 will not spawn anymore
@@ -282,17 +281,36 @@ public class Gameplay extends AppCompatActivity {
             }
         }
 
-        else if (user_score >= 1024){
-            high = 64;
-            low = 32;
-            // Removes the numbers 16 and 8 by replacing it with 0 because those numbers will not spawn anymore
+        else if (user_score == 1024){
+            high = 16;
+            low = 8;
+
+            // 33% chance the highest number will be an 32
+            int randHigh = rand.nextInt(4);
+            if (randHigh == 3) {
+                high = 32;
+            }
+        }
+
+        else if (user_score >= 2048){
+            high = 32;
+            low = 16;
+
+            // 25% chance the highest number will be an 64
+            int randHigh = rand.nextInt(4);
+            if (randHigh == 3) {
+                high = 64;
+            }
+
+            // Removes the number 8 by replacing it with 0 because those numbers will not spawn anymore
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
-                    if (grid[i][j] == 8 || grid[i][j] == 16) grid[i][j] = 0;
+                    if (grid[i][j] == 8) grid[i][j] = 0;
                     // Replacing with 0 provides the user with more opportunity to continue the game
                 }
             }
         }
+
         // Less of a chance to place a 4
         int fill_num = 0;
         if (randNum < 8) fill_num = low;
